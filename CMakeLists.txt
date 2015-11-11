@@ -6,14 +6,14 @@ list(APPEND CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR})
 
 enable_language(CXX)
 
-find_package(kodi REQUIRED)
-find_package(kodiplatform REQUIRED)
+find_package(mrmc REQUIRED)
+find_package(mrmcplatform REQUIRED)
 find_package(platform REQUIRED)
 find_package(TinyXML2 REQUIRED)
 
-include_directories(${kodiplatform_INCLUDE_DIRS}
+include_directories(${mrmcplatform_INCLUDE_DIRS}
                     ${platform_INCLUDE_DIRS}
-                    ${KODI_INCLUDE_DIR}
+                    ${MRMC_INCLUDE_DIR}
                     ${TINYXML2_INCLUDE_DIRS}
                     ${PROJECT_SOURCE_DIR}/lib)
 

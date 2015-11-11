@@ -23,7 +23,7 @@
 #pragma once
 
 #include "client.h"
-#include "kodi/libKODI_guilib.h"
+#include "mrmc/libKODI_guilib.h"
 
 class CDialogRecordPref
 {

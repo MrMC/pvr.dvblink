@@ -42,7 +42,7 @@ CDialogDeleteTimer::CDialogDeleteTimer(CHelper_libXBMC_addon* xbmc, CHelper_libK
 
 	// specify the xml of the window here
 	_confirmed = -1;
-	_window = GUI->Window_create("DeleteTimer.xml", "Confluence", false, true);
+	_window = GUI->Window_create("DeleteTimer.xml", "MrMC", false, true);
 
 	// needed for every dialog
 	_window->m_cbhdl = this;

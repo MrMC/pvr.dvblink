@@ -24,8 +24,8 @@
  */
 
 #pragma once
-#include "kodi/libXBMC_addon.h"
-#include "kodi/libXBMC_pvr.h"
+#include "mrmc/libXBMC_addon.h"
+#include "mrmc/libXBMC_pvr.h"
 
 /*  Client Settings default values */
 #define DEFAULT_HOST                "127.0.0.1"

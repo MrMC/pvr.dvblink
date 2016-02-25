@@ -26,7 +26,7 @@
 #pragma once
 
 #include "platform/os.h"
-#include "kodi/libXBMC_addon.h"
+#include "mrmc/libXBMC_addon.h"
 #include "platform/threads/threads.h"
 #include "platform/threads/mutex.h"
 #include "platform/util/util.h"

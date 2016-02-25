@@ -26,7 +26,7 @@
 
 #include "libdvblinkremote/dvblinkremote.h"
 #include "libdvblinkremote/dvblinkremotehttp.h"
-#include "kodi/libXBMC_addon.h"
+#include "mrmc/libXBMC_addon.h"
 
 class HttpPostClient: public dvblinkremotehttp::HttpClient
 {

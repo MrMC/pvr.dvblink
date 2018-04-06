@@ -562,7 +562,7 @@ void CloseLiveStream(void)
   if (dvblinkclient)
   {
     PLATFORM::CLockObject critsec(bufferMutex);
-    dvblinkclient->StopStreaming(true);
+    dvblinkclient->StopStreaming();
   }
 }
 

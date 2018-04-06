@@ -148,7 +148,7 @@ public:
   bool StartStreaming(const PVR_CHANNEL &channel, dvblinkremote::StreamRequest* streamRequest, std::string& stream_url);
   bool OpenLiveStream(const PVR_CHANNEL &channel, bool use_timeshift, bool use_transcoder, int width,
     int height, int bitrate, const std::string& audiotrack);
-  void StopStreaming(bool bUseChlHandle);
+  void StopStreaming();
   int GetCurrentChannelId();
   void GetDriveSpace(long long *iTotal, long long *iUsed);
   long long SeekLiveStream(long long iPosition, int iWhence);

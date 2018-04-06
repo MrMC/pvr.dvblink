@@ -1580,10 +1580,9 @@ time_t DVBLinkClient::GetBufferTimeEnd()
   return 0;
 }
 
-void DVBLinkClient::StopStreaming(bool bUseChlHandle)
+void DVBLinkClient::StopStreaming()
 {
-  PLATFORM::CLockObject critsec(m_mutex);
-  StopStreamRequest * request;
+  const PLATFORM::CLockObject critsec(m_mutex);
 
   if (m_live_streamer != NULL)
   {
@@ -1591,24 +1590,6 @@ void DVBLinkClient::StopStreaming(bool bUseChlHandle)
     SAFE_DELETE(m_live_streamer);
     m_live_streamer = NULL;
   }
-
-  if (bUseChlHandle)
-  {
-    request = new StopStreamRequest(m_stream->GetChannelHandle());
-  }
-  else
-  {
-    request = new StopStreamRequest(m_clientname);
-  }
-
-  DVBLinkRemoteStatusCode status;
-  std::string error;
-  if ((status = m_dvblinkRemoteCommunication->StopChannel(*request, &error)) != DVBLINK_REMOTE_STATUS_OK)
-  {
-    XBMC->Log(LOG_ERROR, "Could not stop stream (Error code : %d Description : %s)", (int) status, error.c_str());
-  }
-
-  SAFE_DELETE(request);
 }
 
 void DVBLinkClient::SetEPGGenre(dvblinkremote::ItemMetadata& metadata, int& genre_type, int& genre_subtype)

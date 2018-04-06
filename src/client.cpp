@@ -65,6 +65,7 @@ bool        g_bNoGroupSingleRec     = DEFAULT_NOGROUP_SINGLE_REC;         ///< D
 CHelper_libXBMC_addon  *XBMC        = NULL;
 CHelper_libXBMC_pvr    *PVR         = NULL;
 CHelper_libKODI_guilib *GUI         = NULL;
+PLATFORM::CMutex bufferMutex;
 
 extern "C"
 {
@@ -548,15 +549,21 @@ PVR_ERROR GetChannels(ADDON_HANDLE handle, bool bRadio)
 bool OpenLiveStream(const PVR_CHANNEL &channel)
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->OpenLiveStream(channel, g_bUseTimeshift, g_bUseTranscoding, g_iWidth, g_iHeight, g_iBitrate,
         g_szAudiotrack);
+  }
   return false;
 }
 
 void CloseLiveStream(void)
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     dvblinkclient->StopStreaming(true);
+  }
 }
 
 const char * GetLiveStreamURL(const PVR_CHANNEL &channel)
@@ -568,49 +575,70 @@ const char * GetLiveStreamURL(const PVR_CHANNEL &channel)
 int ReadLiveStream(unsigned char *pBuffer, unsigned int iBufferSize)
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->ReadLiveStream(pBuffer, iBufferSize);
+  }
   return 0;
 }
 
 long long SeekLiveStream(long long iPosition, int iWhence /* = SEEK_SET */)
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->SeekLiveStream(iPosition, iWhence);
+  }
   return -1;
 }
 
 long long PositionLiveStream(void)
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->PositionLiveStream();
+  }
   return -1;
 }
 
 long long LengthLiveStream(void)
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->LengthLiveStream();
+  }
   return -1;
 }
 
 time_t GetPlayingTime()
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->GetPlayingTime();
+  }
   return 0;
 }
 
 time_t GetBufferTimeStart()
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->GetBufferTimeStart();
+  }
   return 0;
 }
 
 time_t GetBufferTimeEnd()
 {
   if (dvblinkclient)
+  {
+    PLATFORM::CLockObject critsec(bufferMutex);
     return dvblinkclient->GetBufferTimeEnd();
+  }
   return 0;
 }
 
